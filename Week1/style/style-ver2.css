@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h2 {
+  margin: 0.5rem;
+}
+header nav ul {
+  display: flex;
+}
+header nav ul li {
+  list-style: none;
+  margin: 0.5rem;
+}
+header img {
+  display: none;
+}
+
+section.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background-color: #ddeef8;
+}
+section.intro h1 {
+  font-size: 40px;
+}
+
+main {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+}
+main section.top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+main section.top div {
+  background-color: #ccdde8;
+  display: flex;
+  width: 49%;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+main section.top div img {
+  height: 50px;
+  width: 80px;
+}
+main section.top div h4 {
+  font-weight: normal;
+  margin-left: 0.5rem;
+}
+main section.bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+main section.bottom div.container {
+  display: flex;
+  flex-direction: column;
+  width: 23.7%;
+  margin-bottom: 1rem;
+  position: relative;
+}
+main section.bottom div.container img {
+  width: 100%;
+}
+main section.bottom div.container div.title {
+  background-color: #fff;
+  opacity: 0.75;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main section.bottom div.container div.title h3 {
+  text-align: center;
+  font-weight: normal;
+}
+main section.bottom div.container img.star {
+  position: absolute;
+  opacity: 0.6;
+  width: 25px;
+  right: 0;
+  margin: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+  main {
+    width: 90%;
+  }
+  main section.bottom div.container {
+    width: 49%;
+  }
+}
+@media screen and (max-width: 600px) {
+  header nav {
+    display: none;
+  }
+  header img {
+    display: block;
+    height: 38px;
+    margin-right: 8px;
+  }
+  main section.top {
+    justify-content: center;
+  }
+  main section.top div {
+    width: 100%;
+  }
+  main section.bottom {
+    justify-content: center;
+  }
+  main section.bottom div.container {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 370px) {
+  section.intro h1 {
+    font-size: 32px;
+  }
+}/*# sourceMappingURL=style-ver2.css.map */
