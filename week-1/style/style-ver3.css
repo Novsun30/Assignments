@@ -38,8 +38,8 @@ div.switch nav.column ul li {
 
 #navswitch:target {
   display: block;
-  -webkit-animation: fadein 0.75s;
-          animation: fadein 0.75s;
+  -webkit-animation: fadein 0.5s;
+          animation: fadein 0.5s;
 }
 
 header {
