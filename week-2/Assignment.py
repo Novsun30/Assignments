@@ -21,14 +21,15 @@ calculate(-1, 2, 2) # 你的程式要能夠計算 -1+1，最後印出 0
 # 不定的情況。
 
 def avg(data):
-    result = 0
+    total = 0
     manager = 0
     for i in range(len(data["employees"])):
         if data["employees"][i]["manager"]==False:
-            result = result + data["employees"][i]["salary"]
+            total = total + data["employees"][i]["salary"]
         else:
             manager = manager +1
-    print(result/(len(data["employees"])-manager))
+    result = total/(len(data["employees"])-manager)
+    print(result)
     
 avg({
 "employees":[

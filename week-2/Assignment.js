@@ -21,16 +21,16 @@ calculate(-1, 2, 2); // 你的程式要能夠計算 -1+1，最後印出 0
 // manager 欄位標註為 False (Python) 或 false (JavaScript) 的員工，程式需考慮員工資料數量
 // 不定的情況。
 function avg(data) {
-  let result = 0;
+  let total = 0;
   let manager = 0;
   for (let i = 0; i < data.employees.length; i++) {
     if (data.employees[i].manager == false) {
-      result = result + data.employees[i].salary;
+      total = total + data.employees[i].salary;
     } else {
       manager = manager + 1;
     }
   }
-  result = result / (data.employees.length - manager);
+  let result = total / (data.employees.length - manager);
   console.log(result);
 }
 avg({
