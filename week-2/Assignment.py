@@ -3,13 +3,13 @@
 # 以假設 max 一定大於 min 且為整數，step 為正整數。
 
 def calculate(min, max, step):
-    x = min
+    result = min
     while min < max:
         if min + step > max:
             break
         min = min +step
-        x = x + min
-    print(x)
+        result = result + min
+    print(result)
 
 calculate(1, 3, 1) # 你的程式要能夠計算 1+2+3，最後印出 6
 calculate(4, 8, 2) # 你的程式要能夠計算 4+6+8，最後印出 18
@@ -21,14 +21,14 @@ calculate(-1, 2, 2) # 你的程式要能夠計算 -1+1，最後印出 0
 # 不定的情況。
 
 def avg(data):
-    x = 0
-    y = 0
+    result = 0
+    manager = 0
     for i in range(len(data["employees"])):
         if data["employees"][i]["manager"]==False:
-            x = x + data["employees"][i]["salary"]
+            result = result + data["employees"][i]["salary"]
         else:
-            y = y +1
-    print(x/(len(data["employees"])-y))
+            manager = manager +1
+    print(result/(len(data["employees"])-manager))
     
 avg({
 "employees":[
@@ -59,9 +59,9 @@ avg({
 # 完成以下函式，最後能印出程式中註解所描述的結果。
 
 def func(a):
-    def x(b , c) :
+    def result(b , c) :
         print(a + b*c)
-    return x
+    return result
         
 # 請用你的程式補完這個函式的區塊
 func(2)(3, 4) # 你補完的函式能印出 2+(3*4) 的結果 14
@@ -73,16 +73,16 @@ func(-3)(2, 9) # 你補完的函式能印出 -3+(2*9) 的結果 15
 # 要求四：
 # 找出至少包含兩筆整數的列表 (Python) 或陣列 (JavaScript) 中，兩兩數字相乘後的最大值。
 def maxProduct(nums):
-    t = 0
-    x = nums[0]*nums[1]
+    i2 = 0
+    result = nums[0]*nums[1]
     for i in range(len(nums)):
         for i in range(len(nums)):
-            if t == i:
+            if i2 == i:
                 continue
-            elif  nums[t]*nums[i] > x:
-                x = nums[t]*nums[i]
-        t=t+1    
-    print(x)
+            elif  nums[i2]*nums[i] > result:
+                result = nums[i2]*nums[i]
+        i2=i2+1    
+    print(result)
 
 maxProduct([5, 20, 2, 6]) # 得到 120
 maxProduct([10, -20, 0, 3]) # 得到 30
@@ -98,11 +98,11 @@ maxProduct([-5, -2]) # 得到 10
 # can not use the same element twice.
 def twoSum(nums, target):
     temp = {}
-    x = []
+    myResult = []
     for i in range(len(nums)):
         if nums[i] in temp:
-            x = [temp[nums[i]],i]
-            return x                                
+            myResult = [temp[nums[i]],i]
+            return myResult                                
         temp[target - nums[i]]=i
 
 result=twoSum([2, 11, 7, 15], 9)
@@ -114,24 +114,24 @@ print(result) # show [0, 2] because nums[0]+nums[2] is 9
 # 長度。
 
 def maxZeros(nums):
-    x = 0
+    maxTimes = 0
     temp = []
     for i in range(len(nums)):
         try:
             if nums[i] == nums[i+1] and nums[i] == 0:
-                if x == 0:
-                    x = x+1
-                x = x + 1
+                if maxTimes == 0:
+                    maxTimes = maxTimes + 1
+                maxTimes = maxTimes + 1
             else:
-                temp = temp + [x]
-                x = 0
+                temp = temp + [maxTimes]
+                maxTimes = 0
         except:
-            temp = temp + [x]
-    y = temp[0]
+            temp = temp + [maxTimes]
+    result = temp[0]
     for i in range(len(temp)):
-        if temp[i] > y:
-            y = temp[i]
-    print(y)
+        if temp[i] > result:
+            result = temp[i]
+    print(result)
 
 
 maxZeros([0, 1, 0, 0]) # 得到 2
