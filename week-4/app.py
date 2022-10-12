@@ -22,6 +22,7 @@ def signIn():
     elif account == "" or password == "":
         return redirect(url_for("error",message=["請輸入帳號、密碼"]))
     return redirect(url_for("error",message=["帳號、或密碼輸入錯誤"]))
+
 @app.route("/signout")
 def signOut():
     session['login'] = False
@@ -33,14 +34,10 @@ def member():
         return render_template("member.html")
     if session["login"] == False:
         return redirect("/")
+
 @app.route("/error")
 def error():
     return render_template("error.html", showMessage=request.args.get("message"))
-
-@app.route("/square/")
-def getNumber():
-    num = request.args.get("number")
-    return redirect("/square/"+num)
 
 @app.route("/square/<int:number>")
 def square(number):

@@ -70,7 +70,7 @@ main form.signin button {
   font-size: 18px;
   cursor: pointer;
 }
-main form.square {
+main div.square {
   display: flex;
   flex-direction: column;
   margin-top: 15px;
@@ -80,12 +80,12 @@ main form.square {
   width: 300px;
   height: 275px;
 }
-main form.square h2 {
+main div.square h2 {
   margin-top: 5px;
   text-align: center;
   text-shadow: 5px 3px 10px #000;
 }
-main form.square input {
+main div.square input {
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
@@ -95,12 +95,12 @@ main form.square input {
   text-align: right;
   font-weight: 600;
 }
-main form.square div.container {
+main div.square div.container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-main form.square div.container div {
+main div.square div.container div {
   border: 2px outset buttonborder;
   width: 90px;
   font-size: 30px;
@@ -115,7 +115,7 @@ main form.square div.container div {
       -ms-user-select: none;
           user-select: none;
 }
-main form.square div.container div.del {
+main div.square div.container div.del {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,7 +126,7 @@ main form.square div.container div.del {
       -ms-user-select: none;
           user-select: none;
 }
-main form.square div.container button {
+main div.square div.container button {
   width: 90px;
   height: 40px;
   background: #3e3e3e;
