@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>會員頁面</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='styles/style.css')}}"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{url_for('static',filename='icons/icon.png')}}"
+    />
+  </head>
+  <body>
+    <header><h1>目前位置:會員頁面</h1></header>
+    <main>
+      <h1>成功登入</h1>
+      <div class="idCard">
+        <div class="status">
+          <img src="{{url_for('static',filename='icons/bat.png')}}" alt="bat" />
+          <ul>
+            <li>ID: 卐煞氣a吸血鬼卍</li>
+            <li>Race: Vampire</li>
+            <li>Gender: Male</li>
+            <li>Class: Warrior</li>
+          </ul>
+        </div>
+
+        <ul>
+          <li>HP: 6666</li>
+          <li>MP: 666</li>
+          <br />
+          <li>STR: 99</li>
+          <li>AGI: 30</li>
+          <li>VIT: 99</li>
+          <li>INT: 40</li>
+          <li>DEX: 20</li>
+          <li>LUK: 15</li>
+        </ul>
+      </div>
+      <div class="buttom">
+        <a href="/signout">登出</a>
+        <a href="/">回首頁</a>
+      </div>
+    </main>
+  </body>
+</html>

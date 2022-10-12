@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>登入頁面</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='styles/style.css')}}"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{url_for('static',filename='icons/icon.png')}}"
+    />
+  </head>
+  <body>
+    <header><h1>目前位置:首頁</h1></header>
+    <main>
+      <form action="/signin" method="POST" class="signin">
+        <h2>Trick or Treat Online</h2>
+        <img
+          src="{{url_for('static',filename='icons/pumpkin.png')}}"
+          alt="pumpkin"
+        />
+        <div class="account">
+          <label for="">帳號</label>
+          <input type="text" name="acc" />
+        </div>
+        <div class="password">
+          <label for="">密碼</label> <input type="text" name="pass" />
+        </div>
+        <button>登入</button>
+      </form>
+
+      <form action="/square/" class="square">
+        <h2>正整數平方根計算器</h2>
+        <input type="text" name="number" class="input" />
+        <div class="container">
+          <div class="num" onclick="one(1)" tabindex="0">1</div>
+          <div class="num" onclick="one(2)" tabindex="0">2</div>
+          <div class="num" onclick="one(3)" tabindex="0">3</div>
+          <div class="num" onclick="one(4)" tabindex="0">4</div>
+          <div class="num" onclick="one(5)" tabindex="0">5</div>
+          <div class="num" onclick="one(6)" tabindex="0">6</div>
+          <div class="num" onclick="one(7)" tabindex="0">7</div>
+          <div class="num" onclick="one(8)" tabindex="0">8</div>
+          <div class="num" onclick="one(9)" tabindex="0">9</div>
+          <div class="del" onclick="del()" tabindex="0">Delete</div>
+          <div class="num" onclick="one(0)" tabindex="0">0</div>
+          <button>Enter</button>
+        </div>
+      </form>
+    </main>
+    <script src="{{url_for('static',filename='app.js')}}"></script>
+  </body>
+</html>
