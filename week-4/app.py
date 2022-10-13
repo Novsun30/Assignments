@@ -1,9 +1,4 @@
-from flask import Flask
-from flask import render_template
-from flask import request
-from flask import redirect
-from flask import session
-from flask import url_for
+from flask import Flask, render_template, request, redirect, session, url_for
 
 app = Flask(__name__)
 app.secret_key="You know nothing, Jon Snow"
@@ -30,10 +25,17 @@ def signOut():
 
 @app.route("/member")
 def member():
-    if session["login"] == True:
-        return render_template("member.html")
-    if session["login"] == False:
+    try:
+        if session["login"] == True:
+            return render_template("member.html")
+        elif session["login"] == False:
+            return redirect("/")
+        elif session["login"] == True:
+            return redirect("/square/6")
+    except:
         return redirect("/")
+    
+
 
 @app.route("/error")
 def error():
