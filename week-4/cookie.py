@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response
 
 app = Flask(__name__)
-app.secret_key="You know nothing, Jon Snow"
 
 @app.route("/")
 def index():
