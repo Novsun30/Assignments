@@ -30,8 +30,6 @@ def member():
             return render_template("member.html")
         elif session["login"] == False:
             return redirect("/")
-        elif session["login"] == True:
-            return redirect("/square/6")
     except:
         return redirect("/")
     
