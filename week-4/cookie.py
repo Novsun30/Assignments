@@ -32,7 +32,7 @@ def signOut():
 def member():
     login = request.cookies.get("login")
     try:
-        loginValue = f.decrypt(login).decode("ascii")
+        loginValue = f.decrypt(login).decode()
         if loginValue == "True":
             return render_template("member.html")
     except:
