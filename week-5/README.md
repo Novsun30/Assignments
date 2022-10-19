@@ -70,14 +70,41 @@ ___
   ![image](https://user-images.githubusercontent.com/107986642/196420729-29fe56f8-0317-451c-9222-93f5fcab76a3.png)
 
 ## 要求五：SQL JOIN (Optional)
-```mysql
-CREATE TABLE message(
-  id BIGINT PRIMARY KEY AUTO_INCREMENT,
-  member_id BIGINT NOT NULL,
-  content VARCHAR(255) NOT NULL,
-  like_count INT UNSIGNED NOT NULL DEFAULT 0,
-  time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY(member_id) REFERENCES member(id)
-);
-```
-![image](https://user-images.githubusercontent.com/107986642/196427662-a6de7982-e1f4-41b8-8494-50ad10fff692.png)
++ ####  在資料庫中，建立新資料表紀錄留⾔資訊，取名字為 message。資料表中必須包含以下欄位設定：
+  |  欄位名稱  |   資料型態   |    額外設定              | ⽤途說明 |
+  |-----------|--------------|------------------------|----------|
+  |id         | bigint       |主鍵、⾃動遞增           | 獨立編號|
+  |member_id  | bigint       |不可為空值               |外鍵對應 member 資料表中的 id 留⾔者會員編號|
+  |content    | varchar(255) |不可為空值               |留⾔內容
+  |like_count | int unsigned |不可為空值，預設為 0     | 按讚的數量|
+  |time       | datetime     |不可為空值，預設為當前時間| 留⾔時間|
+  ```mysql
+  CREATE TABLE message(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    member_id BIGINT NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    like_count INT UNSIGNED NOT NULL DEFAULT 0,
+    time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(member_id) REFERENCES member(id)
+  );
+  ```
+  ![image](https://user-images.githubusercontent.com/107986642/196427662-a6de7982-e1f4-41b8-8494-50ad10fff692.png)
++ #### 使⽤ SELECT 搭配 JOIN 語法，取得所有留⾔，結果須包含留⾔者會員的姓名。
+  ```mysql
+  SELECT member.name, message.content FROM member INNER JOIN  message ON member.id = message.member_id;
+  ```
+  ![image](https://user-images.githubusercontent.com/107986642/196794496-ad4ad60a-ad7e-4588-b8ad-2d61b7674072.png)
+
++ #### 使⽤ SELECT 搭配 JOIN 語法，取得 member 資料表中欄位 username 是 test 的所有留⾔，資料中須包含留⾔者會員的姓名。
+  ```mysql
+  SELECT member.username, message.content FROM member INNER JOIN  message ON member.id = message.member_id WHERE member.username = "test";
+  ```
+  ![image](https://user-images.githubusercontent.com/107986642/196803522-79d78074-56aa-4f43-8edc-738baaab444a.png)
+
++ #### 使⽤ SELECT、SQL Aggregate Functions 搭配 JOIN 語法，取得 member 資料表中欄位 username 是 test 的所有留⾔平均按讚數。
+  ```mysql
+  SELECT member.username, AVG(message.like_count) FROM member INNER JOIN message ON member.id = message.member_id WHERE member.username = "test" GROUP BY member.id;
+  ```
+  ![image](https://user-images.githubusercontent.com/107986642/196802492-2596b059-2694-475f-bf53-b147d903ef72.png)
+
+
