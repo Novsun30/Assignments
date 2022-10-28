@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}"/>
+    <title>會員登入</title>
+  </head>
+  <body>
+    <header>
+      <h1>目前位置: 首頁</h1>
+    </header>
+    <main class="index">
+      <div class="register">
+        <div class="tab">
+          <h2>註冊系統</h2>
+        </div>
+        <div class="form">
+          <form action="/signup" method="POST">
+            <label for="reg-name">姓名</label
+            ><input type="text" name="name" id="reg-name" required />
+            <label for="reg-acc">帳號</label
+            ><input type="text" name="account" id="reg-acc" required />
+            <label for="reg-pass">密碼</label
+            ><input type="text" name="password" id="reg-pass" required />
+            <button>註冊</button>
+          </form>
+        </div>
+      </div>
+      <div class="login">
+        <div class="tab">
+          <h2>登入系統</h2>
+        </div>
+        <div class="form">
+          <form action="/signin" method="POST">
+            <label for="log-acc">帳號</label
+            ><input type="text" name="account" id="log-acc" required /><br />
+            <label for="log-pass">密碼</label
+            ><input type="text" name="password" id="log-pass" required /><br />
+            <button>登入</button>
+          </form>
+        </div>       
+      </div>
+    </main>
+  </body>
+</html>
