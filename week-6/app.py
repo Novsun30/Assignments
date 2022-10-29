@@ -18,12 +18,12 @@ def signup():
         return redirect(url_for("error", message = "姓名不能包含特殊符號(除了空格與底線)"))
     if re.search("[^a-zA-Z0-9]", "{}{}".format(acc, psword)):
         return redirect(url_for("error", message = "帳號、密碼只能由英文字母大小寫以及數字組成"))
-    with cnx.cursor(buffered=True) as cursor:
-        checkUsername = ("SELECT username FROM member")
-        cursor.execute(checkUsername)
-        for (username) in cursor:
-            if username[0] == acc :
-                return redirect(url_for("error", message = "帳號已經被註冊"))
+    with cnx.cursor() as cursor:
+        checkUsername = ("SELECT username FROM member WHERE username = %s")
+        cursor.execute(checkUsername, (acc,))
+        accData = cursor.fetchone()
+        if accData != None :
+            return redirect(url_for("error", message = "帳號已經被註冊"))
     with cnx.cursor() as cursor:
         newMember = ("INSERT INTO member (name, username, password)VALUES(%s,%s,%s)")
         memberData = (name, acc, psword)
@@ -35,15 +35,15 @@ def signup():
 def signin():
     acc = request.form["account"]
     psword = request.form["password"]
-    with cnx.cursor(buffered=True) as cursor:
-        checkAcc = ("SELECT id, name, username, password FROM member")
-        cursor.execute(checkAcc)
-        for (id, name, username, password) in cursor:
-            if acc == username and psword == password:
-                session["login"] = True
-                session["id"] = id
-                session["name"] = name                
-                return redirect("/member")
+    with cnx.cursor() as cursor:
+        checkAcc = ("SELECT id, name, username, password FROM member WHERE username = %s AND password = %s ")
+        cursor.execute(checkAcc, (acc, psword))
+        memberData = cursor.fetchone()
+        if memberData != None:
+            session["login"] = True
+            session["id"] = memberData[0]
+            session["name"] = memberData[1]                
+            return redirect("/member")
     return redirect(url_for("error", message = "帳號或密碼輸入錯誤"))
 
 @app.route("/signout")
