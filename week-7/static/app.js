@@ -36,7 +36,7 @@ function updateUsername(){
             result.classList.add("update-result");
             updateContainer.appendChild(result);
         }
-        if(Object.keys(data) == "ok"){
+        if(data.ok == true){
             let result = document.querySelector("h2.update-result");
             result.innerText = "更新成功";
             let showName = document.querySelector("h2.show-name")
@@ -44,7 +44,7 @@ function updateUsername(){
             return;
         }
         let result = document.querySelector("h2.update-result");
-        result.innerHTML = "更新失敗";
+        result.innerText = "更新失敗";
         return;
     });
 }

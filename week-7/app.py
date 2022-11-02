@@ -1,43 +1,48 @@
-from flask import Flask, render_template, request, Response, redirect, session, url_for
-import mysql.connector, re, json
+from flask import Flask, render_template, request, redirect, session, url_for, jsonify
+import mysql.connector, re
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 app.secret_key = "!!xxx YOU SHALL NOT PASS xxx!!"
 cnx = mysql.connector.connect(host = "127.0.0.1", user = "root",  password = "1234", database = "website") 
 
 @app.route("/api/member", methods=["GET", "PATCH"])
 def api_member():
-    if request.method == "GET":
-        get_username = request.args.get("username")
-        with cnx.cursor() as cursor:
-            search_username = "SELECT id, name, username FROM member WHERE username = %s"
-            cursor.execute(search_username, (get_username,))
-            data = cursor.fetchone()
-            if data != None:
-                data = {
-                    "data":{
-                        "id": data[0],
-                        "name": data[1],
-                        "username": data[2]
+    if request.method == "GET" :
+        try:
+            if session["login"] == True:
+                get_username = request.args.get("username")
+                with cnx.cursor() as cursor:
+                    search_username = "SELECT id, name, username FROM member WHERE username = %s"
+                    cursor.execute(search_username, (get_username,))
+                    data = cursor.fetchone()
+                if data != None:
+                    data = {
+                        "data":{
+                            "id": data[0],
+                            "name": data[1],
+                            "username": data[2]
+                        }
                     }
-                }
-                result = Response(json.dumps(data, ensure_ascii = False), mimetype = "application/json")
-                return result
-        data = {"data":None}
-        result = Response(json.dumps(data))
-        return result
+                    return jsonify(data)
+            return jsonify({"data":None})
+        except:
+            return jsonify({"data":None})
     if request.method == "PATCH":
-        data = request.get_json()["name"].strip()
-        if re.search("[^ \w]", data) or data == "":
-            result = Response(json.dumps({"error":True}))
-            return result
-        with cnx.cursor() as cursor:
-            update_name = "UPDATE member SET name = %s WHERE name = %s"
-            cursor.execute(update_name,(data, session["name"]))
-            cnx.commit()
-        session["name"] = data
-        result = Response(json.dumps({"ok":True}))
-        return result
+        try:
+            if session["login"] == True:
+                data = request.get_json()["name"].strip()
+                if  re.search("[^ \w]", data) or data == "":
+                    return jsonify({"error":True})
+                with cnx.cursor() as cursor:
+                    update_name = "UPDATE member SET name = %s WHERE name = %s"
+                    cursor.execute(update_name,(data, session["name"]))
+                    cnx.commit()
+                session["name"] = data
+                return jsonify({"ok":True})
+            return jsonify({"error":True})
+        except:
+            return jsonify({"error":True})
 
 
 @app.route("/")
@@ -57,8 +62,8 @@ def sign_up():
         check_username = ("SELECT username FROM member WHERE username = %s")
         cursor.execute(check_username, (account,))
         accData = cursor.fetchone()
-        if accData != None :
-            return redirect(url_for("error", message = "帳號已經被註冊"))
+    if accData != None :
+        return redirect(url_for("error", message = "帳號已經被註冊"))
     with cnx.cursor() as cursor:
         new_member = ("INSERT INTO member (name, username, password)VALUES(%s,%s,%s)")
         member_data = (name, account, password)
@@ -74,11 +79,11 @@ def sign_in():
         check_account = ("SELECT id, name, username, password FROM member WHERE username = %s AND password = %s ")
         cursor.execute(check_account, (account, password))
         member_data = cursor.fetchone()
-        if member_data != None:
-            session["login"] = True
-            session["id"] = member_data[0]
-            session["name"] = member_data[1]                
-            return redirect("/member")
+    if member_data != None:
+        session["login"] = True
+        session["id"] = member_data[0]
+        session["name"] = member_data[1]                
+        return redirect("/member")
     return redirect(url_for("error", message = "帳號或密碼輸入錯誤"))
 
 @app.route("/signout")
@@ -114,4 +119,4 @@ def message():
         cnx.commit()
     return redirect("/member")
 
-app.run(port = 3000, debug = True)
+app.run(port = 3000)
