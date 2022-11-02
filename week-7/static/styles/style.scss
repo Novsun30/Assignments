@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #eee;
+  font-family: consolas;
+}
+
+a{
+  font-size: 24px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #1e1e1e; 
+  header {
+    display: flex;
+    h1 {
+      text-align: center;
+      background-color: #3c3c3c;
+      font-size: 26px;
+      width: 100%;
+    }
+  }
+  main.index {
+    display: flex;
+    flex-wrap: wrap;
+    div.login{
+      border-left: 1px solid #707070;
+    }
+    div.register, div.login{
+      display: flex;
+      flex: 1 1 300px;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      div.tab{
+        width: 100%;
+        background-color: #252526;
+        box-shadow: 5px 2px 5px 1px #000;
+        h2{
+          text-align: center;
+          background-color: #1e1e1e;
+          width: 200px;
+        }
+      }
+      div.form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50%;
+        form {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          width: 250px;
+          input{
+            color: #000;
+            margin-left: 5px;
+            width: 200px;
+            height: 30px;
+            padding: 5px;
+            font-size: 18px;
+          }
+          label{
+            font-size: 20px;
+          }
+          input,label {
+            margin-bottom: 15px;
+          }
+          button{
+            background-color: #3c3c3c;
+            width: 100px;
+            height: 30px;
+            font-size: 18px;
+            cursor: pointer;   
+          }
+        }
+      }
+    }
+  }
+  main.error-page, main.member-page{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    h2{
+      margin: 15px 0 15px 0;
+    }
+    div.search-update-container{
+      width: 500px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        input{
+          width: 200px;
+          height: 26px;
+          font-size: 18px;
+          padding: 5px;
+          margin: 5px 0 10px 0;
+          
+          color: #000;
+        }
+        button{
+          background-color: #3c3c3c;
+          width: 75px;
+          height: 35px;
+          font-size: 18px;
+          cursor: pointer;    
+        }
+        h2{
+          span.show-name {
+            color: #dcdcaa;
+          }
+          span.parentheses {
+            color: #f8d700;
+          }
+          span.show-username {
+            color: #9cdcfe;
+          }
+        }
+      }
+    }
+    div.msg-board {
+      width: 740px;
+      div.content {
+        margin: 20px 0 20px 0;
+        border: 1.5px solid #707070;
+        padding: 5px;
+        span.msg-name {
+          color: #dcdcaa;
+          font-size: 20px;
+          font-weight: 600;
+        }
+        span.msg-acc {
+          color: #9cdcfe;
+        margin: 0 -10px 0 -10px;
+        }
+        span.parentheses {
+          font-size: 18px;
+          color: #f8d700;
+        }
+        span.colon {
+          color: #fff;
+        }
+        span.msg-time {
+          display: block;
+          color: #6A9955;
+          text-align: right;
+        }
+        p.msg {
+          color: #ce916a;
+          margin: 10px 5px 15px 44px;
+          font-size: 20px;
+        }
+      }      
+    }
+    div.comment-container{
+      form{
+        display: flex;
+        flex-direction: column;
+        label{
+          font-size: 20px;
+        }
+        textarea{
+         color: #000;
+         padding: 5px;
+         margin: 10px 0 10px 0;
+         font-size: 20px;
+        }
+        button{
+          align-self: center;
+          background-color: #3c3c3c;
+          width: 75px;
+          height: 35px;
+          font-size: 18px;
+          cursor: pointer;    
+        }
+      }
+    }
+    div.anchor{
+      width: 450px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
+  }
+}
+
+@media screen and (max-width:900px){
+  body{
+    main.member-page{
+      div.msg-board{
+        width: 600px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:620px){
+  body{
+    main.index{
+      div.register, div.login{
+        height: 450px;
+      }
+    }
+    main.member-page{
+      div.msg-board{
+        width:80% ;
+        div.content{
+          p.msg{
+            font-size: 15px;
+          }
+        }
+      }
+      div.comment{
+        textarea{
+          width: 350px;
+        }
+      }
+      div.anchor{
+        justify-content: space-around;
+      }
+    }
+  }
+}
+  

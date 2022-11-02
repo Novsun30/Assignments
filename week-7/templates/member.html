@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}"/>
+    <title>會員頁面</title>
+  </head>
+  <body>
+    <header>
+      <h1>會員頁面</h1>
+    </header>
+    <main class="member-page">
+      <h2 class="show-name">{{ show_name }}，歡迎登入</h2>
+      <div class="search-update-container">
+        <div  class="search-container">
+          <h2>查詢會員姓名</h2>
+          <input type="text" class="search-input">
+          <button class="search-button">查詢</button>
+        </div>
+        <div class="update-container">
+          <h2>更新會員姓名</h2>
+          <input type="text" class="update-input">
+          <button class="update-button">更新</button>
+        </div>
+      </div>
+      <div class="msg-board">
+        {% for (name, account, content, time) in message %}
+        <div class="content">
+          <span class="msg-name">{{ name | join }} </span>
+          <span class="msg-acc"><span class="parentheses">(</span>{{ account | join }}<span class="parentheses">)</span></span>
+          <span class="colon">:</span>
+          <p class="msg">{{ content | join}}</p>
+          <span class="msg-time">{{ "#[" ~ time ~ "]" }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="comment-container">
+        <form action="/message" method="POST">
+          <label for="comment">想說的話:</label>
+          <textarea type="text" name="message" id="comment" rows="5" cols="50" required ></textarea>
+          <button>留言</button>
+        </form>
+      </div>
+      <div class="anchor">
+        <a href="/signout">登出</a>
+        <a href="/">返回首頁</a>
+      </div>
+    </main>
+    <script src="{{url_for('static',filename='app.js')}}"></script>
+  </body>
+</html>
